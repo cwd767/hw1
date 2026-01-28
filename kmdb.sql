@@ -159,3 +159,49 @@
 -- Represented by agent
 -- ====================
 -- Christian Bale
+
+
+-- HOMEWORK ASSIGNMENT --
+
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS agents;
+DROP TABLE IF EXISTS roles;
+
+-- MOVIES table
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  year INTEGER,
+  rating TEXT,
+  studios_id INTEGER
+);
+
+-- STUDIOS table
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
+
+-- ACTORS table
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  year INTEGER,
+  agents_id INTEGER
+);
+
+-- AGENTS table
+CREATE TABLE agents (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+);
+
+-- ROLES table
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  character TEXT,
+  movies_id INTEGER,
+  actors_id INTEGER
+);
