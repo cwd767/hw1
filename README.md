@@ -47,13 +47,13 @@ In this assignment, you'll be building the domain model, database structure, and
 -- There are five deliverables for this assignment, all delivered as part of
 -- this repository and submitted via GitHub and Canvas:
 --
--- - An ERD (entity relationship diagram) illustrating the entities and
+-- 1 An ERD (entity relationship diagram) illustrating the entities and
 --   relationships in this data model.
--- - Implementation of the ERD via CREATE TABLE statements for each
+-- 2 Implementation of the ERD via CREATE TABLE statements for each
 --   model/table. Include DROP TABLE IF EXISTS statements for each
 --   table, so that each run of this script starts with a blank database.
--- - Insertion of initial sample data into tables.
--- - Selection of data, so that something similar to the sample "report"
+-- 3 Insertion of initial sample data into tables.
+-- 4 Selection of data, so that something similar to the sample "report"
 --   below can be achieved.
 
 -- Rubric
