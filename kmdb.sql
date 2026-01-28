@@ -1,6 +1,6 @@
 -- HOMEWORK ASSIGNMENT #1 - DEYOUNG --
 
-    -- Terminal copy/paste: sqlite3 kmdb.sqlite3 // .mode column // .headers off
+    -- Terminal copy/paste: sqlite3 kmdb.sqlite3
     -- SELECT STATEMENT LANGUAGE
         -- SELECT ____, ____ 
         -- FROM ____ 
@@ -18,9 +18,6 @@ DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS agents;
 DROP TABLE IF EXISTS roles;
-
-.mode column
-.headers off
 
 -- Create STUDIOS table
 CREATE TABLE studios (
@@ -98,14 +95,17 @@ CREATE TABLE roles (
     ('Selina Kyle', 3, 11);
 
 -- OUTPUT --
+.print "================================"
 .print "Homework Assignment #1 - DEYOUNG"
-.print "======"
+.print "================================"
 .print ""
 
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
-    SELECT 
+    SELECT title, year, rating, studios.name
+    FROM movies
+    INNER JOIN studios ON movies.studio_id = studios.id;
 .print ""
 
 -- Prints a header for the cast output
