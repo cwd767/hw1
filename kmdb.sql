@@ -68,10 +68,6 @@ CREATE TABLE roles (
     ('Ari Gold'),
     ('Creighton DeYoung'),
     ('Professor Block');
-    
-    UPDATE actors
-    SET agent_id = 1
-    WHERE name = 'Christian Bale';
 
 -- MOVIES data (based of sample output)
     INSERT INTO movies (title, year, rating, studio_id) VALUES 
@@ -92,6 +88,10 @@ CREATE TABLE roles (
     ('Tom Hardy'),
     ('Joseph Gordon-Levitt'),
     ('Anne Hathaway');
+
+    UPDATE actors
+    SET agent_id = 1
+    WHERE name = 'Christian Bale';
 
 -- ROLES data (based of sample output)
     INSERT INTO roles (character, movie_id, actor_id) VALUES 
@@ -121,16 +121,17 @@ CREATE TABLE roles (
 
 -- Prints a header for the movies output
 .print "Movies"
-.print "======================================"
+.print "================================================="
     SELECT title, year, rating, studios.name
     FROM movies
-    INNER JOIN studios ON movies.studio_id = studios.id;
+    INNER JOIN studios ON movies.studio_id = studios.id
+    ORDER BY year;
 .print ""
 
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
-.print "================================"
+.print "================================================================"
     SELECT movies.title, actors.name, character
     FROM roles
     INNER JOIN movies ON roles.movie_id = movies.id
@@ -139,7 +140,7 @@ CREATE TABLE roles (
 
 -- Prints a header for the agent's list of represented actors
 .print ""
-.print "Represented by agent"
+.print "Represented by Ari Gold"
 .print "======================="
     SELECT actors.name
     FROM actors
