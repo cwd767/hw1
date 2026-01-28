@@ -19,43 +19,67 @@ DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS agents;
 DROP TABLE IF EXISTS roles;
 
--- Create STUDIOS table
+-- CREATE SCHEMA --
+
+-- STUDIOS table
 CREATE TABLE studios (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT
 );
-    -- Inserting STUDIOS data (based of sample output)
-    INSERT INTO studios (name) VALUES ('Warner Bros.');
 
--- Create AGENTS table
+-- AGENTS table
 CREATE TABLE agents (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT
-);
-    -- Inserting AGENTS data (based of sample output)
-    INSERT INTO agents (name) VALUES ('Agent Smith');
+);  
 
--- Create MOVIES table
+-- MOVIES table
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
   year INTEGER,
   rating TEXT,
   studio_id INTEGER
+);  
+
+-- ACTORS table
+CREATE TABLE actors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  agent_id INTEGER
+); 
+
+-- ROLES table
+CREATE TABLE roles (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  character TEXT,
+  movie_id INTEGER,
+  actor_id INTEGER
 );
-    -- Inserting MOVIES data (based of sample output)
+
+
+--INSERT DATA -- 
+
+-- STUDIOS data (based of sample output)
+    INSERT INTO studios (name) VALUES ('Warner Bros.');
+
+-- AGENTS data (based of sample output)
+    INSERT INTO agents (name) VALUES 
+    ('Ari Gold'),
+    ('Creighton DeYoung'),
+    ('Professor Block');
+    
+    UPDATE actors
+    SET agent_id = 1
+    WHERE name = 'Christian Bale';
+
+-- MOVIES data (based of sample output)
     INSERT INTO movies (title, year, rating, studio_id) VALUES 
     ('Batman Begins', 2005, 'PG-13', 1),
     ('The Dark Knight', 2008, 'PG-13', 1),
     ('The Dark Knight Rises', 2012, 'PG-13', 1);
 
--- Create ACTORS table
-CREATE TABLE actors (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT,
-  agent_id INTEGER
-);
-    -- Inserting ACTORS data (based of sample output)
+-- ACTORS data (based of sample output)
     INSERT INTO actors (name) VALUES 
     ('Christian Bale'),
     ('Michael Caine'),
@@ -69,14 +93,7 @@ CREATE TABLE actors (
     ('Joseph Gordon-Levitt'),
     ('Anne Hathaway');
 
--- Create ROLES table
-CREATE TABLE roles (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  character TEXT,
-  movie_id INTEGER,
-  actor_id INTEGER
-);
-    -- Inserting ROLES data (based of sample output)
+-- ROLES data (based of sample output)
     INSERT INTO roles (character, movie_id, actor_id) VALUES 
     ('Bruce Wayne', 1, 1),
     ('Alfred', 1, 2),
@@ -94,7 +111,9 @@ CREATE TABLE roles (
     ('John Blake', 3, 10),
     ('Selina Kyle', 3, 11);
 
+
 -- OUTPUT --
+.print ""
 .print "================================"
 .print "Homework Assignment #1 - DEYOUNG"
 .print "================================"
@@ -102,7 +121,7 @@ CREATE TABLE roles (
 
 -- Prints a header for the movies output
 .print "Movies"
-.print "======"
+.print "======================================"
     SELECT title, year, rating, studios.name
     FROM movies
     INNER JOIN studios ON movies.studio_id = studios.id;
@@ -111,11 +130,19 @@ CREATE TABLE roles (
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
-.print "========"
+.print "================================"
+    SELECT movies.title, actors.name, character
+    FROM roles
+    INNER JOIN movies ON roles.movie_id = movies.id
+    INNER JOIN actors ON roles.actor_id = actors.id;
 .print ""
 
 -- Prints a header for the agent's list of represented actors
 .print ""
 .print "Represented by agent"
-.print "===================="
+.print "======================="
+    SELECT actors.name
+    FROM actors
+    INNER JOIN agents ON actors.agent_id = agents.id
+    WHERE agents.id = 1;
 .print ""
